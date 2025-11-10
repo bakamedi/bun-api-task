@@ -1,17 +1,26 @@
-import { UserRepository } from "./api/user/infrastructure/UserRepository.js";
-import { CreateUser } from "./api/user/application/create.js";
-import { CreateUserController } from "./api/user/infrastructure/controllers/createController.js";
-import { Hash } from "../core/services/hash.js";
-import { LoginUser } from "./api/user/application/login.js";
-import { LoginController } from "./api/user/infrastructure/controllers/loginController.js";
+import { CreateUser, CreateUserController, LoginController, LoginUser, UserRepository } from "../api/api.js";
 import { JWT } from "../core/services/jwt.js";
 
-const userRepository = new UserRepository();
+import { Hash } from "./services/hash.js";
+
+// Servicios compartidos
 const hashService = new Hash();
-const createUser = new CreateUser(userRepository, hashService);
 const jwtService = new JWT();
+const userRepository = new UserRepository();
 
-export const createUserContoller = new CreateUserController(createUser);
-
+// Casos de uso
+const createUser = new CreateUser(userRepository, hashService);
 const loginUser = new LoginUser(userRepository, hashService, jwtService);
-export const loginController = new LoginController(loginUser);
+
+// Controladores
+export const controllers = {
+  createUser: new CreateUserController(createUser),
+  login: new LoginController(loginUser),
+};
+
+// Exporta también servicios si necesitas inyectarlos en otros módulos
+export const services = {
+  hashService,
+  jwtService,
+  userRepository,
+};

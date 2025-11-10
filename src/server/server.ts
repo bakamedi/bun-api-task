@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import { userRouter } from "./core/api/user/router/userRouter";
+import { userRouter } from "./api/api";
 
 export class Server {
   private app: Elysia;

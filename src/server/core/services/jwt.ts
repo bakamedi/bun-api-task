@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken";
 
 export class JWT implements IJWT {
   public sign(payload: string): string {
-    return jwt.sign({ data: payload }, "secret", { expiresIn: "1h" });
+    const jwtSecret = process.env.JWT_PASSWORD as string;
+    return jwt.sign({ data: payload }, jwtSecret, { expiresIn: "1h" });
   }
   public verify(token: string): string {
     return jwt.verify(token, "secret") as string;
