@@ -1,4 +1,5 @@
-import { IHash } from "../../../services/interfaces/IHash";
+
+import { IHash } from "../../../core/services/interfaces/IHash";
 import { IUser } from "../domain/IUser";
 
 export class CreateUser {

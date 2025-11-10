@@ -1,5 +1,5 @@
-import type { IHash } from "../../../services/interfaces/IHash";
-import type { IJWT } from "../../../services/interfaces/IJWT";
+import { IHash } from "../../../core/services/interfaces/IHash";
+import { IJWT } from "../../../core/services/interfaces/IJWT";
 import { IUser } from "../domain/IUser";
 
 export class LoginUser {
